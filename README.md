@@ -11,3 +11,9 @@ A spaced repitition system is possilbe in Notion natively, but has some draw bac
   - [ ] For develpment use .env file for secrets
   - [ ] Use Axios over Netlify SDK to gain experience with it
 - [ ] Display cards in a grid
+
+## Setup
+```shell
+# Run local server (with access to Netlify Serverless functions - used to conntect with Netlify API)
+$ netlify dev
+```
