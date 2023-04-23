@@ -1,0 +1,9 @@
+:root {
+  background-color: var(--gray-125);
+  color: var(--gray-850);
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 400;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
