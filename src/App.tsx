@@ -1,21 +1,31 @@
+import { useEffect, useState } from 'react';
 import './App.css';
 import CardFront from './components/CardFront';
 
 function App() {
-  const dummyCards = [
-    { ID: 1, front: 'What is the capital of South Africa?', back: 'Cape Town, Pretoria & Bloemfontein' },
-    { ID: 2, front: 'What is the capital of Lesotho?', back: 'Maseru' },
-    { ID: 3, front: 'What is the capital of Eswatini?', back: 'Mbabane' },
-    { ID: 4, front: 'What is the capital of Namibia?', back: 'Windhoek' },
-    { ID: 5, front: 'What is the capital of Botswana?', back: 'Gaborone' },
-    { ID: 6, front: 'What is the capital of Zimbabwe?', back: 'Harare' },
-  ];
+  const [cards, setCards] = useState([]);
+
+  async function fetchData() {
+    try {
+      const response = await fetch('/.netlify/functions/notion-api');
+      const data = await response.json();
+      setCards(data.results);
+    } catch (error) {
+      console.error('Error fetching data:', error);
+    }
+  }
+
+  useEffect(() => {
+    fetchData();
+  }, []);
+
+  console.log(cards);
 
   return (
     <div className="layout">
       <div className="grid">
-        {dummyCards.map((card) => (
-          <CardFront key={card.ID} front={card.front} />
+        {cards.map((card) => (
+          <CardFront key={card.id} front={card.properties.Name.title[0]?.plain_text} />
         ))}
       </div>
     </div>
