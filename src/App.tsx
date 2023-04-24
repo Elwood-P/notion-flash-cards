@@ -1,23 +1,16 @@
 import { useEffect, useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import './App.css';
 import CardFront from './components/CardFront';
+import {fetchCards} from './store/cardsSlice'
 
 function App() {
-  const [cards, setCards] = useState([]);
-
-  async function fetchData() {
-    try {
-      const response = await fetch('/.netlify/functions/notion-api');
-      const data = await response.json();
-      setCards(data.results);
-    } catch (error) {
-      console.error('Error fetching data:', error);
-    }
-  }
+  const cards = useSelector((state) => state.cards);
+  const dispatch = useDispatch();
 
   useEffect(() => {
-    fetchData();
-  }, []);
+    dispatch(fetchCards());
+  }, [dispatch]);
 
   console.log(cards);
 
@@ -25,7 +18,7 @@ function App() {
     <div className="layout">
       <div className="grid">
         {cards.map((card) => (
-          <CardFront key={card.id} front={card.properties.Name.title[0]?.plain_text} />
+          <CardFront key={card.id} front={card.properties.Name.title[0].plain_text} />
         ))}
       </div>
     </div>
