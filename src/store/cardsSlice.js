@@ -9,19 +9,25 @@ export const fetchCards = createAsyncThunk('cards/fetchCards', async () => {
 
 const cardsSlice = createSlice({
   name: 'cards',
-  initialState: [],
+  initialState: {
+    cardsData: [],
+    activeCardId: null,
+  },
   reducers: {
+    makeCardActive: (state, action) => {
+      state.activeCardId = action.payload;
+    },
     markDone: (state, action) => {
       // Mark as done - set studied date(now) and duration date(payload). Notion database also needs updating (with middleware)
     },
   },
   extraReducers: (builder) => {
     builder.addCase(fetchCards.fulfilled, (state, action) => {
-      return action.payload;
+      state.cardsData = action.payload;
     });
   },
 });
 
-export const { markDone } = cardsSlice.actions;
+export const { markDone, makeCardActive } = cardsSlice.actions;
 
 export default cardsSlice;

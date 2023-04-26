@@ -1,6 +1,6 @@
 .layout {
   max-width: 1200px;
-  margin: 2rem auto;
+  margin: 4rem auto;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -19,8 +19,34 @@
   padding: 2rem;
   aspect-ratio: 1.6 / 1;
   background-color: #fff;
+  color: var(--gray-450);
+}
+
+.card--front {
   box-shadow: 0.4px 1.3px 2px -1.1px rgba(var(--gray-300-rgb), 0.15), 1px 3.4px 3.6px -2.2px rgba(var(--gray-300-rgb), 0.25),
     2.6px 8.8px 9.2px -3.3px rgba(var(--gray-300-rgb), 0.18);
-  border-radius: 0.3rem;
-  color: var(--gray-450);
+  border-radius: 0.3rem; /* todo: make proportional to width */
+  &:hover {
+    box-shadow: 0 0 0 2px var(--blue), 0.4px 1.3px 2px -1.1px rgba(var(--gray-300-rgb), 0.15),
+      1px 3.4px 3.6px -2.2px rgba(var(--gray-300-rgb), 0.25), 2.6px 8.8px 9.2px -3.3px rgba(var(--gray-300-rgb), 0.18);
+    color: var(--gray-850);
+    cursor: pointer;
+  }
+}
+
+.card--back {
+  max-width: 800px;
+  box-shadow: 0px 4px 2px rgba(var(--gray-900-rgb), 0.45), 0px 4px 4px rgba(var(--gray-900-rgb), 0.25),
+    inset 0px 1px 0px rgba(var(--gray-250-rgb), 0.25);
+  border-radius: 0.6rem; /* todo: make proportional to width */
+}
+
+.overlay {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: var(--gray-950);
+  z-index: 20;
 }
