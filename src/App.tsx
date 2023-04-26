@@ -7,25 +7,26 @@ import Overlay from './components/Overlay';
 import { fetchCards } from './store/cardsSlice';
 
 function App() {
-  const cards = useSelector((state) => state.cards);
   const dispatch = useDispatch();
-  const showBack = true;
-  
+  const cardsData = useSelector((state) => state.cards.cardsData);
+  const activeCardId = useSelector((state) => state.cards.activeCardId);
+
+  const isCardActive = activeCardId !== null;
+  const activeCardData = isCardActive ? cardsData.find((card) => card.id === activeCardId) : null;
+
   useEffect(() => {
     dispatch(fetchCards());
   }, [dispatch]);
 
-  console.log(cards);
-
   return (
     <div className="layout">
       <div className="grid">
-        {cards.map((card) => (
-          <CardFront key={card.id} front={card.properties.Name.title[0].plain_text} />
+        {cardsData.map((card) => (
+          <CardFront key={card.id} id={card.id} front={card.properties.Name.title[0].plain_text} />
         ))}
-        {showBack && (
+        {isCardActive && (
           <Overlay>
-            <CardBack />
+            <CardBack id={activeCardId} front={activeCardData.properties.Name.title[0].plain_text} back={activeCardData.properties.Name.title[0].plain_text} />
           </Overlay>
         )}
       </div>
