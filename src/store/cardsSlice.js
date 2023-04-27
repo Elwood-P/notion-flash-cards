@@ -17,6 +17,9 @@ const cardsSlice = createSlice({
     makeCardActive: (state, action) => {
       state.activeCardId = action.payload;
     },
+    makeCardInActive: (state) => {
+      state.activeCardId = null;
+    },
     markDone: (state, action) => {
       // Mark as done - set studied date(now) and duration date(payload). Notion database also needs updating (with middleware)
     },
@@ -28,6 +31,6 @@ const cardsSlice = createSlice({
   },
 });
 
-export const { markDone, makeCardActive } = cardsSlice.actions;
+export const { markDone, makeCardActive, makeCardInActive } = cardsSlice.actions;
 
 export default cardsSlice;
