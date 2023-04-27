@@ -1,5 +1,12 @@
-function CardBack({ front, back, id }) {
-  return <div className="card card--back">Back</div>;
+function CardBack({ front, back }) {
+  return <div className="card card--back">
+    <div>
+      {front}
+    </div>
+    <div>
+      {back}
+    </div>
+  </div>;
 }
 
 export default CardBack;

@@ -28,7 +28,11 @@ function App() {
         ))}
         {isCardActive && (
           <Overlay>
-            <CardBack id={activeCardId} front={activeCardData.properties.Name.title[0].plain_text} back={activeCardData.properties.Name.title[0].plain_text} />
+            <CardBack
+              id={activeCardId}
+              front={activeCardData.properties.Name.title[0].plain_text}
+              back={activeCardData.content.results[0].paragraph.rich_text[0].plain_text}
+            />
           </Overlay>
         )}
       </div>
