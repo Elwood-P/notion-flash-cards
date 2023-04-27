@@ -18,6 +18,8 @@ function App() {
     dispatch(fetchCards());
   }, [dispatch]);
 
+  console.log(cardsData);
+
   return (
     <div className="layout">
       <div className="grid">
